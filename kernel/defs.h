@@ -8,6 +8,7 @@ struct spinlock;
 struct sleeplock;
 struct stat;
 struct superblock;
+struct sysinfo;
 
 // bio.c
 void            binit(void);
@@ -16,6 +17,7 @@ void            brelse(struct buf*);
 void            bwrite(struct buf*);
 void            bpin(struct buf*);
 void            bunpin(struct buf*);
+int             freemem(void);
 
 // console.c
 void            consoleinit(void);
@@ -69,6 +71,7 @@ void            initlog(int, struct superblock*);
 void            log_write(struct buf*);
 void            begin_op(void);
 void            end_op(void);
+int             nproc(void);
 
 // pipe.c
 int             pipealloc(struct file**, struct file**);
@@ -109,6 +112,7 @@ void            procdump(void);
 
 // swtch.S
 void            swtch(struct context*, struct context*);
+
 
 // spinlock.c
 void            acquire(struct spinlock*);
@@ -184,6 +188,8 @@ void            plic_complete(int);
 void            virtio_disk_init(void);
 void            virtio_disk_rw(struct buf *, int);
 void            virtio_disk_intr(void);
+// sysinfo.c
+int             systeminfo(uint64);
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))

@@ -7,6 +7,7 @@
 #include "proc.h"
 
 uint64
+
 sys_exit(void)
 {
   int n;
@@ -90,4 +91,14 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+uint64
+sys_sysinfo(void)
+{
+  uint64 info; // user pointer to struct stat
+  argaddr(0, &info);
+  if (info < 0 )
+    return -1;
+  return systeminfo(info);
 }
