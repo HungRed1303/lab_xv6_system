@@ -7,6 +7,15 @@
 #include "proc.h"
 
 uint64
+sys_trace(void) {
+  struct proc *p = myproc();
+  //int trace_mask;
+  argint(0, &(p->mask));
+  //p->mask=trace_mask;
+  return 0;
+}
+
+uint64
 
 sys_exit(void)
 {
