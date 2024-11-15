@@ -93,6 +93,8 @@ LABUPPER = $(shell echo $(LAB) | tr a-z A-Z)
 XCFLAGS += -DSOL_$(LABUPPER) -DLAB_$(LABUPPER)
 endif
 
+CFLAGS += -I$(K)
+
 CFLAGS += $(XCFLAGS)
 CFLAGS += -MD
 CFLAGS += -mcmodel=medany
@@ -173,6 +175,10 @@ mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h
 
 UPROGS=\
 	$U/_cat\
+	$U/_primes\
+	$U/_find\
+	$U/_pingpong\
+	$U/_xargs\
 	$U/_echo\
 	$U/_forktest\
 	$U/_grep\
